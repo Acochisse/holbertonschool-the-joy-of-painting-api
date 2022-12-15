@@ -48,10 +48,11 @@ def extract_data():
     print (df)
     df2 = pd.read_csv('src_files/JOP-colors', header=None, skiprows=1, usecols=color_range, names = color_array)
     df3 = pd.read_csv('src_files/JOP-sm', header=None, skiprows=1, usecols=subjects_range, names = subjects_array)
+    df4 = pd.read_csv('src_files/JOP-colors', header=None, skiprows=1, usecols=[2], names = ['Image_url'])
     conn = sqlite3.connect('Joy_of_Painting.db')
     c = conn.cursor()
     """Combines the dataframes into one dataframe"""
-    df_final = pd.concat([df,df2,df3], axis=1)
+    df_final = pd.concat([df,df4,df2,df3], axis=1)
     df_final.to_sql('Joy_of_Painting.db', conn, if_exists='replace', index=False)
     conn.commit()
     conn.close()
