@@ -13,8 +13,6 @@ import os
 import sys
 
 app = Flask(__name__)
-app.config.from_object(__name__)
-db = SQLAlchemy(app)
 cors = CORS(app)
 
 
